@@ -1,0 +1,27 @@
+CREATE TABLE xtheme_options (
+	option_id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	option_name VARCHAR(255) NOT NULL DEFAULT '',
+	option_value LONGTEXT NOT NULL,
+	PRIMARY KEY (option_id),
+	UNIQUE INDEX option_name (option_name)
+)
+ENGINE=MyISAM;
+
+CREATE TABLE xtheme_slide (
+	slide_id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	slide_caption VARCHAR(255) NOT NULL DEFAULT '',
+	slide_image VARCHAR(255) NOT NULL DEFAULT '',
+	slide_link VARCHAR(255) NOT NULL DEFAULT '',
+	PRIMARY KEY (slide_id)
+)
+ENGINE=MyISAM;
+
+CREATE TABLE xtheme_menu (
+	link_id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	link_name VARCHAR(255) NOT NULL DEFAULT '',
+	link_url VARCHAR(255) NOT NULL DEFAULT '',
+	link_position VARCHAR(255) NOT NULL DEFAULT '',
+	link_parent VARCHAR(255) NOT NULL DEFAULT '',
+	PRIMARY KEY (link_id)
+)
+ENGINE=MyISAM;
