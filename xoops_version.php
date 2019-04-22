@@ -3,27 +3,22 @@
  * Extend XOOPS Themes
  *
  * @copyright           (c) 2019-2019 XOOPS Project (www.xoops.org)
- * @license             GNU GPL 3 (https://www.gnu.org/licenses/gpl-3.0.html)
- * @package             xthemes
- * @since               1.0.0
- * @author              Angelo Rocha
- * @author              Angelo Rocha <contato@angelorocha.com.br>
+ * @license                 GNU GPL 3 (https://www.gnu.org/licenses/gpl-3.0.html)
+ * @package                 xthemes
+ * @since                   1.0.0
+ * @author                  Angelo Rocha
+ * @author                  Angelo Rocha <contato@angelorocha.com.br>
  */
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-defined( 'XOOPS_ROOT_PATH' ) || exit( 'XOOPS root path not defined' );
-
-$xthemes_dir = basename( __DIR__ );
+$moduleDirName = basename(__DIR__);
 
 require_once __DIR__ . '/preload/autoloader.php';
-
-require_once __DIR__ . '/class/XthemesUtility.php';
-require_once __DIR__ . '/class/XthemesConfig.php';
-require_once __DIR__ . '/class/XthemesHelper.php';
 
 /**
  * General Info
  */
-$modversion                        = array();
+$modversion                        = [];
 $modversion['name']                = _MI_XTHEMES_MOD_NAME;
 $modversion['version']             = 0.1;
 $modversion['description']         = _MI_XTHEMES_MOD_DESC;
@@ -37,14 +32,11 @@ $modversion['credits']             = 'Angelo Rocha';
 $modversion['license']             = 'GNU GPL 3.0 or later';
 $modversion['license_url']         = 'www.gnu.org/licenses/gpl-3.0.html';
 $modversion['release_info']        = 'Changelog';
-$modversion['release_file']        = XOOPS_URL . "/modules/$xthemes_dir/docs/changelog.txt";
+$modversion['release_file']        = XOOPS_URL . "/modules/$moduleDirName/docs/changelog.txt";
 $modversion['manual']              = 'link to manual file';
-$modversion['manual_file']         = XOOPS_URL . "/modules/$xthemes_dir/docs/install.txt";
+$modversion['manual_file']         = XOOPS_URL . "/modules/$moduleDirName/docs/install.txt";
 $modversion['image']               = 'assets/images/logo.png';
-$modversion['dirname']             = $xthemes_dir;
-$modversion['dirmoduleadmin']      = '/Frameworks/moduleclasses/moduleadmin';
-$modversion['icons16']             = '../../Frameworks/moduleclasses/icons/16';
-$modversion['icons32']             = '../../Frameworks/moduleclasses/icons/32';
+$modversion['dirname']             = $moduleDirName;
 
 /**
  * About Module
@@ -60,21 +52,20 @@ $modversion['support_name']        = '';
 $modversion['min_php']             = '5.6.0';
 $modversion['min_xoops']           = '2.5.9';
 $modversion['min_admin']           = '1.2';
-$modversion['min_db']              = array(
-	'mysql'  => '5.0.7',
-	'mysqli' => '5.0.7'
-);
+$modversion['min_db']              = [
+    'mysql'  => '5.0.7',
+    'mysqli' => '5.0.7',
+];
 
 /**
  * Paypal Donation Info
  */
-
-$modversion['paypal'] = array(
-	'business'      => 'angelo.ofp@gmail.com',
-	'item_name'     => 'Donation : ' . _MI_XTHEMES_PAYPAL_DONATION,
-	'amount'        => 10,
-	'currency_code' => 'USD'
-);
+$modversion['paypal'] = [
+    'business'      => 'angelo.ofp@gmail.com',
+    'item_name'     => 'Donation : ' . _MI_XTHEMES_PAYPAL_DONATION,
+    'amount'        => 10,
+    'currency_code' => 'USD',
+];
 
 /**
  * Admin Menu
@@ -93,24 +84,24 @@ $modversion['adminmenu']   = 'admin/menu.php';
 /**
  * Help Section
  */
-$modversion['helpsection'] = array(
-	array(
-		'name' => _MI_XTHEMES_OVERVIEW,
-		'link' => 'page=help'
-	),
-	array(
-		'name' => _MI_XTHEMES_DISCLAIMER,
-		'link' => 'page=disclaimer'
-	),
-	array(
-		'name' => _MI_XTHEMES_LICENSE,
-		'link' => 'page=license'
-	),
-	array(
-		'name' => _MI_XTHEMES_SUPPORT,
-		'link' => 'page=support'
-	),
-);
+$modversion['helpsection'] = [
+    [
+        'name' => _MI_XTHEMES_OVERVIEW,
+        'link' => 'page=help',
+    ],
+    [
+        'name' => _MI_XTHEMES_DISCLAIMER,
+        'link' => 'page=disclaimer',
+    ],
+    [
+        'name' => _MI_XTHEMES_LICENSE,
+        'link' => 'page=license',
+    ],
+    [
+        'name' => _MI_XTHEMES_SUPPORT,
+        'link' => 'page=support',
+    ],
+];
 
 /**
  * Install/uninstall/update
@@ -123,13 +114,13 @@ $modversion['onUpdate']    = 'include/update.php';
  * Frontend Menu
  */
 $modversion['hasMain'] = 1;
-if ( $GLOBALS['xoopsUser'] ) {
-	$modversion['sub'][1]['name'] = _MI_XTHEMES_EDIT_THEME;
-	$modversion['sub'][1]['url']  = 'edit_theme.php';
-	$modversion['sub'][2]['name'] = _MI_XTHEMES_EDIT_SLIDE;
-	$modversion['sub'][2]['url']  = 'edit_slide.php';
-	$modversion['sub'][3]['name'] = _MI_XTHEMES_EDIT_MENU;
-	$modversion['sub'][3]['url']  = 'edit_menu.php';
+if ($GLOBALS['xoopsUser']) {
+    $modversion['sub'][1]['name'] = _MI_XTHEMES_EDIT_THEME;
+    $modversion['sub'][1]['url']  = 'edit_theme.php';
+    $modversion['sub'][2]['name'] = _MI_XTHEMES_EDIT_SLIDE;
+    $modversion['sub'][2]['url']  = 'edit_slide.php';
+    $modversion['sub'][3]['name'] = _MI_XTHEMES_EDIT_MENU;
+    $modversion['sub'][3]['url']  = 'edit_menu.php';
 }
 
 /**
@@ -140,53 +131,54 @@ $modversion['sqlfile']['mysql'] = 'sql/install.sql';
 /**
  * Created tables on install
  */
-$modversion['tables'][1] = 'xtheme_options';
-$modversion['tables'][2] = 'xtheme_slide';
-$modversion['tables'][3] = 'xtheme_menu';
+$modversion['tables'] = [
+    $moduleDirName . '_' . 'options',
+    $moduleDirName . '_' . 'slide',
+    $moduleDirName . '_' . 'menu',
+];
 
 /**
  * Templates
  */
-$modversion['templates'][] = array( 'file' => 'xthemes_config.tpl', 'description' => '' );
-$modversion['templates'][] = array( 'file' => 'xthemes_menus.tpl', 'description' => '' );
-$modversion['templates'][] = array( 'file' => 'xthemes_slides.tpl', 'description' => '' );
+$modversion['templates'][] = ['file' => 'xthemes_config.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'xthemes_menus.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'xthemes_slides.tpl', 'description' => ''];
 
 /**
  * Module Settings
  */
+$modversion['config'][] = [
+    'name'        => 'xthemes_line_break',
+    'title'       => _MI_XTHEMES_GENERAL_HEAD,
+    'description' => '',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'head',
+];
 
-$modversion['config'][] = array(
-	'name'        => 'xthemes_line_break',
-	'title'       => _MI_XTHEMES_GENERAL_HEAD,
-	'description' => '',
-	'formtype'    => 'line_break',
-	'valuetype'   => 'textbox',
-	'default'     => 'head'
-);
+$modversion['config'][] = [
+    'name'        => 'xthemes_show_slide',
+    'title'       => _MI_XTHEMES_SHOW_SLIDE,
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
 
-$modversion['config'][] = array(
-	'name'        => 'xthemes_show_slide',
-	'title'       => _MI_XTHEMES_SHOW_SLIDE,
-	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 1
-);
+$modversion['config'][] = [
+    'name'        => 'xthemes_show_menu',
+    'title'       => _MI_XTHEMES_SHOW_MENU,
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
 
-$modversion['config'][] = array(
-	'name'        => 'xthemes_show_menu',
-	'title'       => _MI_XTHEMES_SHOW_MENU,
-	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 1
-);
-
-$modversion['config'][] = array(
-	'name'        => 'xthemes_enable_og_tags',
-	'title'       => _MI_XTHEMES_OG_TAGS,
-	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 1
-);
+$modversion['config'][] = [
+    'name'        => 'xthemes_enable_og_tags',
+    'title'       => _MI_XTHEMES_OG_TAGS,
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
