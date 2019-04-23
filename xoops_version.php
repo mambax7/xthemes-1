@@ -13,7 +13,7 @@ defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 $moduleDirName = basename(__DIR__);
 
-require_once __DIR__ . '/preload/autoloader.php';
+require_once __DIR__ . '/preloads/autoloader.php';
 
 /**
  * General Info
